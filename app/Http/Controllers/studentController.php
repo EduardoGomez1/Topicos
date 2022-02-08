@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class studentController extends Controller
 {
@@ -13,7 +14,9 @@ class studentController extends Controller
      */
     public function index()
     {
-        return 'index welcome';
+        $students = DB::table('students')->get();
+        //$students = DB::table('students')->where('name','Eduardo')->get();
+        return $students;
     }
 
     /**
