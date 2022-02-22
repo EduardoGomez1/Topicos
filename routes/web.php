@@ -18,4 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/hello', function () {
+    return view('welcome');
+});
+
 Route::get('/students', [studentController::class, 'index']);
+Route::post('/students_create', [studentController::class, 'store']);
+
+Route::get('/create_token', [studentController::class, 'create_token']);
+Route::post('/students_index', [studentController::class, 'index']);

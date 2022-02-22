@@ -15,7 +15,7 @@ class studentController extends Controller
     public function index()
     {
         $students = DB::table('students')->get();
-        //$students = DB::table('students')->where('name','Eduardo')->get();
+        $students = DB::table('students')->where('name','Eduardo')->get();
         return $students;
     }
 
@@ -37,7 +37,7 @@ class studentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        echo $request;
     }
 
     /**
@@ -83,5 +83,10 @@ class studentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function create_token()
+    {
+        return csrf_token();
     }
 }

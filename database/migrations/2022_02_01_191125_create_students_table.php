@@ -17,10 +17,11 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('control',9);
             $table->string('name',100);
-            $table->string('last_name',100);
+            $table->string('lastName',100);
             $table->string('email')->unique();
             $table->integer('semester');
             $table->timestamps();
+            $table->foreignId('program_id')->references('id')->on('programs')->onDelete('cascade');
         });
     }
 
