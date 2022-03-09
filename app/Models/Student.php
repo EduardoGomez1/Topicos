@@ -14,6 +14,7 @@ protected $fillable = [
     'lastName',
     'email',
     'control',
+    'semester',
     'program_id'
 ];
 

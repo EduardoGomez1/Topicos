@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Program;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class studentController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,7 @@ class studentController extends Controller
     public function index()
     {
         $students = DB::table('students')->get();
-        $students = DB::table('students')->where('name','Eduardo')->get();
+        //$students = DB::table('students')->where('name', $request->name)->count();
         return $students;
     }
 
@@ -46,9 +48,11 @@ class studentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $program = Program::find(2)->student;
+        //$student = Student::find(2)->program;
+        return $program;
     }
 
     /**
@@ -69,9 +73,18 @@ class studentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $student = Student::find($request->id);
+        $student->name = $request->name;
+        $student->control = $request->control;
+        $student->lastName = $request->LastName;
+        $student->email = $request->email;
+        $student->semester = $request->semester;
+        $student->program_id = $request->program_id;
+        $student->save();
+        $student = Student::all();
+        return $student;
     }
 
     /**
@@ -80,9 +93,14 @@ class studentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+
+
+    public function destroy(Request $request)
     {
-        //
+        $student = Student::find($request->id);
+        $student -> delete();
+        $student = Student::all();
+        return $student;
     }
 
     public function create_token()
